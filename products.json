@@ -1,0 +1,7 @@
+[
+{"id" :1 , "name":"Galaxy 5000" , "price": 3000},
+{"id" :2 , "name":"Nokia 2000" , "price": 2800},
+{"id" :3 , "name":"Tesla 500" , "price": 1500},
+{"id" :4 , "name":"Apple 1000" , "price": 8000}
+
+]
