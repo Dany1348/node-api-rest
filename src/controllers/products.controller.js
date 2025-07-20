@@ -6,15 +6,19 @@ const products =[
     
     ];
 
-
+import * as model from "../models/products.model.js";
 
 export const getAllProducts = (req,res)=>{
-    res.json(products);
+   const products = model.getAllProducts();
+   res.json(products);
 };
 
 export const searchProduct = (req,res)=>{
-    const {nombre }= req.query;
-    const filtered = products.filter((item)=> item.name.toLowerCase().includes(nombre.toLowerCase()));
+    const {name }= req.query;
+    console.log(req.query);
+    //const filtered = products.filter((item)=> item.name.toLowerCase().includes(nombre.toLowerCase()));
+    const filtered = products.filter((item)=> item.name.includes(name));
+    
     res.json(filtered);
 
 };

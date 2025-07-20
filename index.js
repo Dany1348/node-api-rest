@@ -5,7 +5,8 @@ import cors from "cors";
 const app = express();
 
 app.get("/" , (req , res)=> {
-    res.send ("<h1> Ahora arrancamos  con dev</h1>")
+    //res.send ("<h1> Ahora arrancamos  con dev</h1>")
+    res.json({message : " Arrancamos con la API REST "})
 });
 
 import productsRouter from "./src/routes/products.router.js"
