@@ -17,6 +17,7 @@ const products =[
             updateProduct,
             deleteProduct
         }
+        
      from "../controllers/products.controller.js";
 
     router.get("/products", getAllProducts);
