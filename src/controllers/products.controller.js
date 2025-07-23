@@ -8,9 +8,10 @@ const products =[
 
 import * as model from "../models/products.model.js";
 
-export const getAllProducts = async()=>{
-   return await model.getAllProducts();
-   
+export const getAllProducts = async(req,res)=>{
+   //return await model.getAllProducts();
+   const products = await model.getAllProducts();
+   res.json(products);
 };
 
 export const searchProduct = (req,res)=>{

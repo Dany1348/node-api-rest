@@ -1,5 +1,6 @@
 console.log( " Por que hay algo y no mas bien nada?");
 
+import "dotenv/config";
 import express  from "express";
 import cors from "cors";
 const app = express();
@@ -17,7 +18,7 @@ app.use((req,res,next)=>{
     res.status(404).json({error : " Not found "});
 });
 
-const PORT = 3000;
+const PORT =  process.env.PORT || 3001;
 
 app.listen(PORT , ()=> {
     console.log( `Escuchando en http://localhost:${PORT}`);
