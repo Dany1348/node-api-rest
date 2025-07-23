@@ -24,12 +24,18 @@ export const searchProduct = (req,res)=>{
 
 };
 
-export const getProductById =  (req,res)=>{
-    const product = products.find((item)=> item.id == req.params.id)
-    if(!product){
+export const getProductById = async (req,res)=>{
+    const {id} = req.params;
+    //const product = products.find((item)=> item.id == req.params.id)
+    const product = await model.getProductById(id);
+
+    if(product){
+            res.json(product);
+        
+    }else{
         res.status(404).json({error : "el producto no existe"});
     }
-    res.json(product);
+    
 };
 
 export const createProduct = (req,res)=>{
