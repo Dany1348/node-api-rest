@@ -19,7 +19,8 @@ const products =[
         }
         
      from "../controllers/products.controller.js";
-            import {auth} from "../middlewares/auth.middleware.js";
+        
+     import {auth} from "../middlewares/auth.middleware.js";
 
 
     router.get("/products", getAllProducts);

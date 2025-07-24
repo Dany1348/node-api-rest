@@ -2,8 +2,12 @@ const products =[
     {"id" :110 , "name":"Galaxy 5000" , "price": 3000},
     {"id" :220 , "name":"Nokia 2000" , "price": 2800},
     {"id" :310 , "name":"Tesla 500" , "price": 1500},
-    {"id" :4 , "name":"Apple 1000" , "price": 8000}
-    
+    {"id" :4 , "name":"Apple 1000" , "price": 8000},
+    {"name":"Galaxy 5000" , "price": 3000 , "categories" : "Cellphone" },
+    {"name":"Nokia 2000" , "price": 2800 , "categories" : "Cellphone" },
+    {"name":"Tesla 500" , "price": 35000 , "categories" : "Autocar" },
+    {"name":"Apple 1000" , "price": 8000 , "categories" : "Computer" }
+
     ];
 
 import * as model from "../models/products.model.js";
@@ -12,16 +16,6 @@ export const getAllProducts = async(req,res)=>{
    //return await model.getAllProducts();
    const products = await model.getAllProducts();
    res.json(products);
-};
-
-export const searchProduct = (req,res)=>{
-    const {name }= req.query;
-    console.log(req.query);
-    //const filtered = products.filter((item)=> item.name.toLowerCase().includes(nombre.toLowerCase()));
-    const filtered = products.filter((item)=> item.name.includes(name));
-    
-    res.json(filtered);
-
 };
 
 export const getProductById = async (req,res)=>{
@@ -36,6 +30,53 @@ export const getProductById = async (req,res)=>{
         res.status(404).json({error : "el producto no existe"});
     }
     
+};
+
+export const createProduct = async (req, res) => {
+  const { name, price, categories } = req.body;
+
+  const newProduct = await model.createProduct({ name, price, categories });
+    console.log(newProduct);
+    
+  res.status(201).json(newProduct);
+};
+
+
+
+export const deleteProduct = async (req, res) => {
+  const productId = req.params.id;
+  console.log(productId);
+
+  const product = await model.deleteProduct(productId);
+
+  if (!product) {
+    return res.status(404).json({ error: "Producto no encontrado" });
+  }
+
+  res.status(204).send();
+};
+
+export const searchProduct = (req, res) => {
+  const { name } = req.query;
+
+  const products = model.getAllProducts();
+
+  const filteredProducts = products.filter((p) =>
+    p.name.toLowerCase().includes(name.toLowerCase())
+  );
+
+  res.json(filteredProducts);
+};
+
+/*
+export const searchProduct = (req,res)=>{
+    const {name }= req.query;
+    console.log(req.query);
+    //const filtered = products.filter((item)=> item.name.toLowerCase().includes(nombre.toLowerCase()));
+    const filtered = products.filter((item)=> item.name.includes(name));
+    
+    res.json(filtered);
+
 };
 
 export const createProduct = (req,res)=>{
@@ -75,5 +116,5 @@ export const deleteProduct =  (req,res)=>{
         }
     products.splice(productIndex , 1);
     res.status(204).send();
-};
+};*/
 
