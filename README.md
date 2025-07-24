@@ -52,11 +52,16 @@ npm run dev
 - **Descripción:** Devuelve los productos cuyo nombre contiene la palabra indicada.
 - **Parámetros:**
   - `name` (query, requerido): texto a buscar en el nombre del producto.
-- **Ejemplo de uso:** `/products/search?name=camiseta`
+- **Ejemplo de uso:** `/products/search?name=Apple 3000`
 - **Respuesta ejemplo:**
 
 ```json
-[{ "id": 1, "name": "Camiseta Deportiva", "price": 150 }]
+[{
+    "id": "QD2Hrk2QsvchIR0QMtVh",
+    "categories": "Computer",
+    "name": "Apple 3000",
+    "price": 18000
+  }]
 ```
 
 ### Obtener producto por ID
@@ -65,11 +70,16 @@ npm run dev
 - **Descripción:** Devuelve un producto específico por su ID.
 - **Parámetros:**
   - `id` (path, requerido): ID del producto.
-- **Ejemplo de uso:** `/products/1`
+- **Ejemplo de uso:** `/products/QD2Hrk2QsvchIR0QMtVh`
 - **Respuesta ejemplo:**
 
 ```json
-{ "id": 1, "name": "Camiseta Deportiva", "price": 150 }
+{
+  "id": "QD2Hrk2QsvchIR0QMtVh",
+  "categories": "Computer",
+  "name": "Apple 3000",
+  "price": 18000
+}
 ```
 
 ### Crear un producto
@@ -79,13 +89,22 @@ npm run dev
 - **Body (JSON):**
 
 ```json
-{ "name": "Nuevo Producto", "price": 999 }
+{
+    "categories": "Computer",
+    "name": "Apple 3000",
+    "price": 18000
+  }
 ```
 
 - **Respuesta ejemplo:**
 
 ```json
-{ "id": 6, "name": "Nuevo Producto", "price": 999 }
+{
+    "id": "QD2Hrk2QsvchIR0QMtVh",
+    "categories": "Computer",
+    "name": "Apple 3000",
+    "price": 18000
+  }
 ```
 
 ### Actualizar un producto (PUT)
@@ -144,16 +163,23 @@ npm run dev
 
 ```
 src/
-├── Controllers/
+├── middlewares/
+│   └── auth.middleware.js
+├── controllers/
 │   └── products.controller.js
-├── Models/
-│   └── Product.js
-└── Routes/
+│   └── auth.controller.js
+├── models/
+│   └── products.model.js
+│   └── firebase.js
+└── routes/
     └── products.router.js
+│   └── auth.router.js    
 ```
 
 ## Tecnologías utilizadas
 
 - Node.js
 - Express.js
+- Firebase.js
+- Jsonwebtoken
 - ES6 Modules

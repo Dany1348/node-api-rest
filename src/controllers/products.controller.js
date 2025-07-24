@@ -40,7 +40,6 @@ export const saveProduct = async (req, res) => {
   res.status(201).json(newProduct);
 };
 
-
 export const createProduct = async (req, res) => {
   const { name, price, categories } = req.body;
 
@@ -49,8 +48,6 @@ export const createProduct = async (req, res) => {
     
   res.status(201).json(newProduct);
 };
-
-
 
 export const deleteProduct = async (req, res) => {
   const productId = req.params.id;
@@ -85,8 +82,8 @@ export const updateProduct =(req,res)=>{
         if(productIndex === -1){
           return  res.status(404).json({error : "Producto  no encontrado "});
         }
-    const {name ,price } = req.body;
-    products[productIndex]= {id : productId ,  name , price};
+    const {name ,price ,categories} = req.body;
+    products[productIndex]= {id : productId ,  name , price ,categories};
 
     res.json(products[productIndex]);
 };
