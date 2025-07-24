@@ -65,11 +65,12 @@ export const deleteProduct = async (req, res) => {
   res.status(204).send();
 };
 
-export const searchProduct = (req, res) => {
+export const searchProduct = async (req, res) => {
   const { name } = req.query;
 
-  const products = model.getAllProducts();
-
+  const products = await model.getAllProducts();
+  console.log("Esto viene del model", products);
+  
   const filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(name.toLowerCase())
   );

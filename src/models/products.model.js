@@ -14,7 +14,7 @@ export const getAllProducts = async ()=>{
             id: doc.id,
             ...doc.data(),
         }));
-        console.log(products);
+        //console.log(products);
             return products;
 
     }catch(error) {
