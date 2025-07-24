@@ -41,10 +41,15 @@ export const getProductById = async (id) => {
 
 }
 
+// Método para guardar un producto en Firestore
+export async function saveProduct( product ) {
+await addDoc(productsCollection, product );
+};
+
 export const createProduct = async (data) => {
   try {
     const docRef = await addDoc(productsCollection, data);
-    console.log(productsCollection);
+    console.log(data);
     
     return { id: docRef.id, ...data };
   } catch (error) {

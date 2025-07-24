@@ -15,7 +15,8 @@ const products =[
             getProductById,
             createProduct,
             updateProduct,
-            deleteProduct
+            deleteProduct,
+            saveProduct
         }
         
      from "../controllers/products.controller.js";
@@ -25,7 +26,7 @@ const products =[
 
     router.get("/products", getAllProducts);
     router.get("/products/search" ,searchProduct );
-    router.get("/products/:id",auth , getProductById);
+    router.get("/products/:id", getProductById);
     router.post("/products", createProduct);
     router.put("/products/:id", updateProduct);
     router.delete("/products/:id",deleteProduct);

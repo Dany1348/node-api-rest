@@ -31,6 +31,15 @@ export const getProductById = async (req,res)=>{
     }
     
 };
+export const saveProduct = async (req, res) => {
+  const { name, price, categories } = req.body;
+
+  const newProduct = await model.saveProduct({ name, price, categories });
+    console.log(newProduct);
+    
+  res.status(201).json(newProduct);
+};
+
 
 export const createProduct = async (req, res) => {
   const { name, price, categories } = req.body;
@@ -66,6 +75,19 @@ export const searchProduct = (req, res) => {
   );
 
   res.json(filteredProducts);
+};
+
+export const updateProduct =(req,res)=>{
+    const productId = parseInt(req.params.id ,10);
+    const productIndex = products.findIndex((item) => item.id = productId);
+
+        if(productIndex === -1){
+          return  res.status(404).json({error : "Producto  no encontrado "});
+        }
+    const {name ,price } = req.body;
+    products[productIndex]= {id : productId ,  name , price};
+
+    res.json(products[productIndex]);
 };
 
 /*
